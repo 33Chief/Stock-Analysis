@@ -2,7 +2,7 @@
 
 #Instructions
 
-Create a script that will loop through all the stocks for one year and output the following information.
+Create a script that will loop through all the stocks for one year and output the following information:
 
 -The ticker symbol.
 
@@ -13,4 +13,7 @@ Create a script that will loop through all the stocks for one year and output th
 -The total stock volume of the stock.
 
 -You should also have conditional formatting that will highlight positive change in green and negative change in red.
+
+
+
 
