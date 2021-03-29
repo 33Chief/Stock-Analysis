@@ -1,0 +1,132 @@
+Sub Column_names():
+
+Dim ws As Worksheet
+  
+For Each ws In Worksheets
+
+ws.Activate
+Debug.Print ws.Name
+
+
+ws.Range("K1").Value = "TICKER"
+ws.Range("L1").Value = "YEARLYCHANGE"
+ws.Range("M1").Value = "PERCENTCHANGE"
+ws.Range("N1").Value = "TOTALSTOCKVOLUME"
+
+Next
+
+End Sub
+
+
+
+
+
+ Sub SUMMARY_TABLE():
+
+On Error Resume Next
+  
+  Dim ws As Worksheet
+  
+  Dim ticker_name As String
+  
+  Dim Ticker_count As Long
+  
+  Dim Ticker_Total As Double
+  
+  Dim open_price As Double
+  
+  Dim close_price As Double
+  
+  Dim yearly_change As Double
+  
+  Dim Percent_change As Double
+  
+  Dim i As Long
+      
+  
+  
+  For Each ws In Worksheets
+  
+
+  
+  lastrow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+
+  
+  Dim Summary_table_row As Integer
+  
+  Summary_table_row = 2
+
+ 
+  For i = 2 To lastrow
+       
+     
+     Ticker_Total = 0
+
+   
+    If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
+
+      
+   ticker_name = ws.Cells(i, 1).Value
+   
+   Ticker_Total = Ticker_Total + ws.Cells(i, 7).Value
+   
+   open_price = ws.Cells(i, 3).Value
+
+   close_price = ws.Cells(lastrow, 6).Value
+
+   yearly_change = close_price - open_price
+   
+   Percent_change = Round(((yearly_change / open_price) * 100), 2)
+ 
+   
+ 
+  ws.Range("K" & Summary_table_row).Value = ticker_name
+    
+ 
+  ws.Range("N" & Summary_table_row).Value = Ticker_Total
+  
+  
+  ws.Range("L" & Summary_table_row).Value = yearly_change
+    
+
+  ws.Range("M" & Summary_table_row).Value = "%" & Percent_change
+ 
+
+
+
+
+    If ws.Range("L" & Summary_table_row).Value > 0 Then
+
+    ws.Range("L" & Summary_table_row).Interior.ColorIndex = 4
+
+    ElseIf ws.Range("L" & Summary_table_row).Value < 0 Then
+
+    ws.Range("L" & Summary_table_row).Interior.ColorIndex = 3
+
+    ElseIf ws.Range("L" & Summary_table_row).Value = 0 Then
+
+    ws.Range("L" & Summary_table_row).Interior.ColorIndex = 0
+ 
+    End If
+
+  Summary_table_row = Summary_table_row + 1
+      
+ 
+    Ticker_Total = 0
+      
+
+    Else
+
+     
+      Ticker_Total = Ticker_Total + ws.Cells(i, 7).Value
+
+ 
+    End If
+
+Next i
+
+    Next ws
+
+
+
+End Sub
