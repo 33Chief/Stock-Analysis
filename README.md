@@ -1,6 +1,4 @@
 # Stock Analysis
-#Goal
-
 
 #Instructions
 
