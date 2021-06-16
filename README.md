@@ -1,7 +1,7 @@
 # Stock Analysis
 ![image](https://user-images.githubusercontent.com/71952428/118861131-2b93f500-b8aa-11eb-8ccd-60f821eade61.png)
 
-# VBA Homework - The VBA of Wall Street
+# The VBA of Wall Street
 
 ## Background
 
